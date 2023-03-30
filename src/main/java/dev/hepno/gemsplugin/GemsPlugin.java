@@ -25,9 +25,7 @@ public final class GemsPlugin extends JavaPlugin {
         // Database
         try {
             databaseManager.connect();
-            if (!(databaseManager.getConnection().prepareStatement("SELECT * FROM gems").executeQuery().next())) {
-                databaseManager.getConnection().prepareStatement("CREATE TABLE gems (uuid VARCHAR(36), gems INT)").executeUpdate();
-            }
+            databaseManager.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS gems (uuid VARCHAR(36), gems INT)").executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             Bukkit.getServer().getPluginManager().disablePlugin(this);
