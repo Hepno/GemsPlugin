@@ -68,6 +68,8 @@ public class Gems extends Command {
                 player.sendMessage("You do not have permission to use this command!");
                 return;
             }
+            databaseManager.addGems(player.getUniqueId(), Integer.parseInt(args[2]));
+            player.sendMessage(ChatColor.GREEN + "Added " + args[2] + " gems to " + args[1] + "!");
             return;
         }
 
@@ -76,6 +78,8 @@ public class Gems extends Command {
                 player.sendMessage("You do not have permission to use this command!");
                 return;
             }
+            databaseManager.takeGems(player.getUniqueId(), Integer.parseInt(args[2]));
+            player.sendMessage(ChatColor.GREEN + "Took " + args[2] + " gems from " + args[1] + "!");
             return;
         }
 
@@ -84,6 +88,15 @@ public class Gems extends Command {
                 player.sendMessage("You do not have permission to use this command!");
             }
         }
+        Player target = plugin.getServer().getPlayer(args[1]);
+        if (target == null) {
+            player.sendMessage(ChatColor.RED + "Player not found!");
+            return;
+        }
+        databaseManager.takeGems(player.getUniqueId(), Integer.parseInt(args[2]));
+        databaseManager.addGems(target.getUniqueId(), Integer.parseInt(args[2]));
+        player.sendMessage(ChatColor.GREEN + "Sent " + args[2] + " gems to " + args[1] + "!");
+        target.sendMessage(ChatColor.GREEN + "Received " + args[2] + " gems from " + player.getName() + "!");
     }
 
     @Override
