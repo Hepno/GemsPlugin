@@ -32,13 +32,18 @@ public class Gems extends Command {
         Player player = (Player) sender;
         DatabaseManager databaseManager = plugin.getDatabaseManager();
 
-        if (args.length == 0) {
+        if (args.length < 1) {
             if (databaseManager.playerExists(player.getUniqueId())) {
                 player.sendMessage("You have " + databaseManager.getGems(String.valueOf(player.getUniqueId())) + " gems.");
             } else {
                 databaseManager.createPlayer(player.getUniqueId());
                 player.sendMessage("You have " + databaseManager.getGems(String.valueOf(player.getUniqueId())) + " gems.");
             }
+            return;
+        }
+
+        if (args.length < 2) {
+            player.sendMessage("Usage: /gems <add|send|take|set|get> <player> [amount]");
             return;
         }
 
@@ -69,6 +74,7 @@ public class Gems extends Command {
                 PreparedStatement ps = databaseManager.getConnection().prepareStatement("UPDATE gems SET gems=? WHERE uuid=?");
                 ps.setInt(1, Integer.parseInt(args[2]));
                 ps.setString(2, args[1]);
+                ps.executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
