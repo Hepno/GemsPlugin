@@ -6,6 +6,8 @@ import dev.hepno.gemsplugin.manager.DatabaseManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Gems extends Command {
@@ -41,33 +43,58 @@ public class Gems extends Command {
         }
 
         if (args.length > 3) {
-            player.sendMessage("Usage: /gems <give|take|set|get> <player> [amount]");
+            player.sendMessage("Usage: /gems <add|send|take|set|get> <player> [amount]");
             return;
         }
 
         if (args.length == 2 && (!args[0].equalsIgnoreCase("get"))) {
-            player.sendMessage("Usage: /gems <give|take|set|get> <player> [amount]");
+            player.sendMessage("Usage: /gems <add|send|take|set|get> <player> [amount]");
             return;
         }
 
         if (args.length == 2 && (args[0].equalsIgnoreCase("get"))) {
-            // Return gem count of player
+            if (!player.hasPermission("gems.get")) {
+                player.sendMessage("You do not have permission to use this command!");
+                return;
+            }
             return;
         }
 
         if (args.length == 3 && (args[0].equalsIgnoreCase("set"))) {
-            // Return gem count of player
+            if (!player.hasPermission("gems.set")) {
+                player.sendMessage("You do not have permission to use this command!");
+                return;
+            }
+            try {
+                PreparedStatement ps = databaseManager.getConnection().prepareStatement("UPDATE gems SET gems=? WHERE uuid=?");
+                ps.setInt(1, Integer.parseInt(args[2]));
+                ps.setString(2, args[1]);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             return;
         }
 
-        if (args.length == 3 && (args[0].equalsIgnoreCase("give"))) {
-            // Return gem count of player
+        if (args.length == 3 && (args[0].equalsIgnoreCase("add"))) {
+            if (!player.hasPermission("gems.add")) {
+                player.sendMessage("You do not have permission to use this command!");
+                return;
+            }
             return;
         }
 
         if (args.length == 3 && (args[0].equalsIgnoreCase("take"))) {
-            // Return gem count of player
+            if (!player.hasPermission("gems.take")) {
+                player.sendMessage("You do not have permission to use this command!");
+                return;
+            }
             return;
+        }
+
+        if (args.length == 3 && (args[0].equalsIgnoreCase("send"))) {
+            if (!player.hasPermission("gems.send")) {
+                player.sendMessage("You do not have permission to use this command!");
+            }
         }
     }
 
