@@ -32,6 +32,11 @@ public class Gems extends Command {
         }
         Player player = (Player) sender;
         DatabaseManager databaseManager = plugin.getDatabaseManager();
+        try {
+            databaseManager.connect();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         if (args.length < 1) {
             if (databaseManager.playerExists(player.getUniqueId())) {

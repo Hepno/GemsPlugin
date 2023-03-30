@@ -39,7 +39,6 @@ public final class GemsPlugin extends JavaPlugin {
         // PlaceholderAPI
         if (!Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
             Bukkit.getConsoleSender().sendMessage("PlaceholderAPI is not installed!");
-            Bukkit.getPluginManager().disablePlugin(this);
         }
         else {
             new GemsPlaceholder(this).register();
