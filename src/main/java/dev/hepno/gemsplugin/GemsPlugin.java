@@ -2,6 +2,7 @@ package dev.hepno.gemsplugin;
 
 import dev.hepno.gemsplugin.manager.DatabaseManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.SQLException;
@@ -13,6 +14,11 @@ public final class GemsPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        // Config
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
+
         instance = this;
         databaseManager = new DatabaseManager();
 
@@ -21,13 +27,10 @@ public final class GemsPlugin extends JavaPlugin {
             databaseManager.connect();
         } catch (SQLException e) {
             e.printStackTrace();
+            Bukkit.getServer().getPluginManager().disablePlugin(this);
         }
 
         // PlaceholderAPI
-
-        // Config
-        getConfig().options().copyDefaults();
-        saveDefaultConfig();
     }
 
     @Override
