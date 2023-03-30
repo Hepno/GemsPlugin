@@ -8,11 +8,7 @@ import java.sql.SQLException;
 
 public class DatabaseManager {
 
-    private GemsPlugin plugin;
-
-    public DatabaseManager(GemsPlugin plugin) {
-        this.plugin = plugin;
-    }
+    private final GemsPlugin plugin = GemsPlugin.getInstance();
 
     // Database Credentials
     private final String HOST = plugin.getConfig().getString("database.host");

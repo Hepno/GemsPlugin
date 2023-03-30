@@ -9,11 +9,11 @@ import java.sql.SQLException;
 public final class GemsPlugin extends JavaPlugin {
 
     private static GemsPlugin instance;
+    private DatabaseManager databaseManager = new DatabaseManager();
 
     @Override
     public void onEnable() {
         instance = this;
-        DatabaseManager databaseManager = new DatabaseManager(this);
 
         // Database
         try {
@@ -34,7 +34,5 @@ public final class GemsPlugin extends JavaPlugin {
         // Plugin shutdown logic
     }
 
-    public static GemsPlugin getInstance() {
-        return instance;
-    }
+    public static GemsPlugin getInstance() { return instance; }
 }
