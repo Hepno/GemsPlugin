@@ -86,6 +86,14 @@ public class DatabaseManager {
             ps.setInt(1, gems);
             ps.setString(2, uuid.toString());
             ps.executeUpdate();
+
+            if (plugin.getConfig().get("allow-negative-balance").equals("false")) {
+                if (getGems(uuid.toString()) - gems < 0) {
+                    setGems(uuid, 0);
+                    return;
+                }
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

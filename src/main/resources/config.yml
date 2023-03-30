@@ -10,3 +10,4 @@ currency-name: "Gems"
 starting-balance: 0
 command-name: "gems"
 placeholder-game: "gems"
+allow-negative-balance: false
