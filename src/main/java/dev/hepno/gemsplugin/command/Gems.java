@@ -42,7 +42,7 @@ public class Gems extends Command {
             return;
         }
 
-        if (args.length < 2) {
+        if (args.length <= 2 && (!args[0].equalsIgnoreCase("get"))) {
             player.sendMessage("Usage: /gems <add|send|take|set|get> <player> [amount]");
             return;
         }
