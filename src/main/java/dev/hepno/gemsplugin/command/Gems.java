@@ -134,6 +134,11 @@ public class Gems extends Command {
             return;
         }
 
+        if (databaseManager.getGems(String.valueOf(player.getUniqueId())) < Integer.parseInt(args[2])) {
+            player.sendMessage(ChatColor.RED + "You do not have enough gems to send!");
+            return;
+        }
+
         databaseManager.takeGems(player.getUniqueId(), Integer.parseInt(args[2]));
         databaseManager.addGems(target.getUniqueId(), Integer.parseInt(args[2]));
         player.sendMessage(ChatColor.GREEN + "Sent " + args[2] + " gems to " + args[1] + "!");
