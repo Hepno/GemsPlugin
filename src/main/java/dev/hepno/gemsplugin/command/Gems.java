@@ -63,6 +63,15 @@ public class Gems extends Command {
                 player.sendMessage("You do not have permission to use this command!");
                 return;
             }
+
+            // Ensure that the amount can be parsed as an integer
+            try {
+                Integer.parseInt(args[2]);
+            } catch (NumberFormatException e) {
+                player.sendMessage(ChatColor.RED + "Invalid amount! Please enter a valid number.");
+                return;
+            }
+
             databaseManager.setGems(player.getUniqueId(), Integer.parseInt(args[2]));
             player.sendMessage(ChatColor.GREEN + "Set " + args[1] + "'s gems to " + args[2] + "!");
             return;
@@ -83,6 +92,15 @@ public class Gems extends Command {
                 player.sendMessage("You do not have permission to use this command!");
                 return;
             }
+
+            // Ensure that the amount can be parsed as an integer
+            try {
+                Integer.parseInt(args[2]);
+            } catch (NumberFormatException e) {
+                player.sendMessage(ChatColor.RED + "Invalid amount! Please enter a valid number.");
+                return;
+            }
+
             databaseManager.takeGems(player.getUniqueId(), Integer.parseInt(args[2]));
             player.sendMessage(ChatColor.GREEN + "Took " + args[2] + " gems from " + args[1] + "!");
             return;
@@ -98,6 +116,15 @@ public class Gems extends Command {
             player.sendMessage(ChatColor.RED + "Player not found!");
             return;
         }
+
+        // Ensure that the amount can be parsed as an integer
+        try {
+            Integer.parseInt(args[2]);
+        } catch (NumberFormatException e) {
+            player.sendMessage(ChatColor.RED + "Invalid amount! Please enter a valid number.");
+            return;
+        }
+
         databaseManager.takeGems(player.getUniqueId(), Integer.parseInt(args[2]));
         databaseManager.addGems(target.getUniqueId(), Integer.parseInt(args[2]));
         player.sendMessage(ChatColor.GREEN + "Sent " + args[2] + " gems to " + args[1] + "!");

@@ -7,6 +7,6 @@ mysql:
 
 decimal-points: 1
 currency-name: "Gems"
-starting-balance: 1000
+starting-balance: 0
 command-name: "gems"
 placeholder-game: "gems"
