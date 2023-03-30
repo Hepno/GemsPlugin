@@ -11,6 +11,7 @@ import java.util.Objects;
 public class GemsPlaceholder extends PlaceholderExpansion {
 
     private final GemsPlugin plugin;
+
     public GemsPlaceholder(GemsPlugin plugin) {
         this.plugin = plugin;
     }
@@ -35,7 +36,6 @@ public class GemsPlaceholder extends PlaceholderExpansion {
         if (player == null) {
             return null;
         }
-
         return plugin.getDatabaseManager().getGems(player.getUniqueId().toString()) + "";
     }
 }
