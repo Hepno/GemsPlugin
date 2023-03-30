@@ -25,6 +25,9 @@ public final class GemsPlugin extends JavaPlugin {
         // Database
         try {
             databaseManager.connect();
+            if (!(databaseManager.getConnection().prepareStatement("SELECT * FROM gems").executeQuery().next())) {
+                databaseManager.getConnection().prepareStatement("CREATE TABLE gems (uuid VARCHAR(36), gems INT)").executeUpdate();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             Bukkit.getServer().getPluginManager().disablePlugin(this);
@@ -35,7 +38,11 @@ public final class GemsPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        try {
+            databaseManager.disconnect();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static GemsPlugin getInstance() { return instance; }
