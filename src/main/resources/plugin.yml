@@ -1,0 +1,4 @@
+name: GemsPlugin
+version: '${project.version}'
+main: dev.hepno.gemsplugin.GemsPlugin
+api-version: 1.19
