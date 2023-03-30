@@ -11,11 +11,11 @@ public class DatabaseManager {
     private final GemsPlugin plugin = GemsPlugin.getInstance();
 
     // Database Credentials
-    private final String HOST = plugin.getConfig().getString("database.host");
-    private final String PORT = plugin.getConfig().getString("database.port");
-    private final String DATABASE = plugin.getConfig().getString("database.database");
-    private final String USERNAME = plugin.getConfig().getString("database.username");
-    private final String PASSWORD = plugin.getConfig().getString("database.password");
+    private final String HOST = plugin.getConfig().getString("mysql.host");
+    private final String PORT = plugin.getConfig().getString("mysql.port");
+    private final String DATABASE = plugin.getConfig().getString("mysql.database");
+    private final String USERNAME = plugin.getConfig().getString("mysql.username");
+    private final String PASSWORD = plugin.getConfig().getString("mysql.password");
 
     private Connection connection;
 

@@ -1,10 +1,9 @@
-# MySQL configuration
-host: "localhost"
-port: 3306
-database: "database"
-username: "username"
-password: "password"
+mysql:
+  host: "localhost"
+  port: 3306
+  database: "database"
+  username: "username"
+  password: "password"
 
-# Settings
 decimal-points: 1
 currency-name: "Gems"
