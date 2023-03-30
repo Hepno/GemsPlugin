@@ -1,15 +1,30 @@
 package dev.hepno.gemsplugin;
 
+import dev.hepno.gemsplugin.manager.DatabaseManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.sql.SQLException;
+
 public final class GemsPlugin extends JavaPlugin {
+
+    private static GemsPlugin instance;
 
     @Override
     public void onEnable() {
-        // PlaceholderExpansion expansion = new GemsExpansion();
+        instance = this;
+        DatabaseManager databaseManager = new DatabaseManager(this);
 
-        // Setup Config
+        // Database
+        try {
+            databaseManager.connect();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // PlaceholderAPI
+
+        // Config
         getConfig().options().copyDefaults();
         saveDefaultConfig();
     }
@@ -17,5 +32,9 @@ public final class GemsPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    public static GemsPlugin getInstance() {
+        return instance;
     }
 }
