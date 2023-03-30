@@ -8,3 +8,4 @@ mysql:
 decimal-points: 1
 currency-name: "Gems"
 starting-balance: 1000
+command-name: "gems"

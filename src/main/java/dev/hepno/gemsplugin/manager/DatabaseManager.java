@@ -114,4 +114,18 @@ public class DatabaseManager {
             e.printStackTrace();
         }
     }
+
+    public boolean playerExists(UUID uuid) {
+        PreparedStatement ps;
+        try {
+            ps = connection.prepareStatement("SELECT * FROM gems WHERE uuid = ?");
+            ps.setString(1, uuid.toString());
+            ps.executeQuery();
+            if (ps.getResultSet().next()) return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 }

@@ -1,5 +1,6 @@
 package dev.hepno.gemsplugin;
 
+import dev.hepno.gemsplugin.command.Gems;
 import dev.hepno.gemsplugin.manager.DatabaseManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
@@ -14,6 +15,8 @@ public final class GemsPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        // Register classes
+        registerCommands();
 
         // Config
         getConfig().options().copyDefaults();
@@ -44,4 +47,10 @@ public final class GemsPlugin extends JavaPlugin {
     }
 
     public static GemsPlugin getInstance() { return instance; }
+
+    public DatabaseManager getDatabaseManager() { return databaseManager; }
+
+    public void registerCommands() {
+        new Gems(this);
+    }
 }
