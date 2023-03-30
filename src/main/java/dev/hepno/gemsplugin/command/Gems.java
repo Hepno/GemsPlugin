@@ -3,6 +3,7 @@ package dev.hepno.gemsplugin.command;
 import dev.hepno.gemsplugin.GemsPlugin;
 import dev.hepno.gemsplugin.manager.Command;
 import dev.hepno.gemsplugin.manager.DatabaseManager;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -57,14 +58,8 @@ public class Gems extends Command {
                 player.sendMessage("You do not have permission to use this command!");
                 return;
             }
-            try {
-                PreparedStatement ps = databaseManager.getConnection().prepareStatement("UPDATE gems SET gems=? WHERE uuid=?");
-                ps.setInt(1, Integer.parseInt(args[2]));
-                ps.setString(2, args[1]);
-                ps.executeUpdate();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            databaseManager.setGems(player.getUniqueId(), Integer.parseInt(args[2]));
+            player.sendMessage(ChatColor.GREEN + "Set " + args[1] + "'s gems to " + args[2] + "!");
             return;
         }
 
