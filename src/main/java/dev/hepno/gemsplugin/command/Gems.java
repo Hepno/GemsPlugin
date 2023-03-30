@@ -52,19 +52,6 @@ public class Gems extends Command {
             return;
         }
 
-        if (args.length == 2 && (!args[0].equalsIgnoreCase("get"))) {
-            player.sendMessage("Usage: /gems <add|send|take|set|get> <player> [amount]");
-            return;
-        }
-
-        if (args.length == 2 && (args[0].equalsIgnoreCase("get"))) {
-            if (!player.hasPermission("gems.get")) {
-                player.sendMessage("You do not have permission to use this command!");
-                return;
-            }
-            return;
-        }
-
         if (args.length == 3 && (args[0].equalsIgnoreCase("set"))) {
             if (!player.hasPermission("gems.set")) {
                 player.sendMessage("You do not have permission to use this command!");
