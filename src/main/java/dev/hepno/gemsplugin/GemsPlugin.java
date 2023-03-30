@@ -8,6 +8,10 @@ public final class GemsPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         // PlaceholderExpansion expansion = new GemsExpansion();
+
+        // Setup Config
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
     }
 
     @Override

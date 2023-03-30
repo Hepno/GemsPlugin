@@ -1,4 +1,4 @@
-package dev.hepno.gemsplugin;
+package dev.hepno.gemsplugin.manager;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
