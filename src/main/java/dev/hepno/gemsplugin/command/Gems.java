@@ -82,6 +82,15 @@ public class Gems extends Command {
                 player.sendMessage("You do not have permission to use this command!");
                 return;
             }
+
+            // Ensure that the amount can be parsed as an integer
+            try {
+                Integer.parseInt(args[2]);
+            } catch (NumberFormatException e) {
+                player.sendMessage(ChatColor.RED + "Invalid amount! Please enter a valid number.");
+                return;
+            }
+
             databaseManager.addGems(player.getUniqueId(), Integer.parseInt(args[2]));
             player.sendMessage(ChatColor.GREEN + "Added " + args[2] + " gems to " + args[1] + "!");
             return;
